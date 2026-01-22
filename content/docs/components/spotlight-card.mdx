@@ -1,0 +1,67 @@
+---
+title: Spotlight Card
+description: Your first document
+---
+
+import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
+import { SpotlightCardDemo } from "@/demo/components/SpotlightCardDemo";
+import { componentSource } from "@/lib/docs/components/SpotlightCard";
+
+# Box component
+
+<Tabs items={['Vista Previa', 'Código']}>
+  <Tab>
+    <SpotlightCardDemo/>
+
+    ## Props
+
+    <AutoTypeTable path="src/components/content/components/SpotlightCard/spotlightCard.types.ts" name="SpotlightCardProps" />
+
+  </Tab>
+
+  <Tab>
+    ## Usage
+
+    ```jsx copy showLineNumbers
+    import { Box } from "@/Box";
+
+    <div style={{ minHeight: "300px" }}>
+      <Flex spacing={remToPx(1)} className="h-full">
+        <SpotlightCard>
+          <Box className="max-w-xs w-full py-2 px-4">
+            <H5>Lorem Ipsum Product</H5>
+            <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</P>
+          </Box>
+        </SpotlightCard>
+        <SpotlightCard colorGlow="glowPurple">
+          <Box className="max-w-xs w-full py-2 px-4">
+            <H5>Lorem Ipsum Product</H5>
+            <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</P>
+          </Box>
+        </SpotlightCard>
+        <SpotlightCard colorGlow="glowTeal">
+          <Box className="max-w-xs w-full py-2 px-4">
+            <H5>Lorem Ipsum Product</H5>
+            <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</P>
+          </Box>
+        </SpotlightCard>
+      </Flex>
+    </div>;
+    ```
+
+    ## Code
+
+    ### Interface code
+
+    <CodeBlockDisplay file={componentSource.interface} />
+
+    ### Component Code
+
+    <CodeBlockDisplay file={componentSource.tsx} />
+
+    ### CSS
+
+    <CodeBlockDisplay file={componentSource.css} />
+
+  </Tab>
+</Tabs>

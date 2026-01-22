@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "---Home---",
+    "index",
+
+    "---Layouts---",
+    "layouts/box",
+    "layouts/flex",
+
+    "---Components---",
+    "components/marquee",
+    "components/spotlight-card",
+
+    "---Backgrounds---",
+    "backgrounds/animated-grid-backdrop",
+
+    "---Visit---",
+    "...folder",
+    "!file",
+    "!otherFolder",
+    "[Vercel](https://vercel.com)",
+    "[Triangle][Vercel](https://vercel.com)"
+  ]
+}

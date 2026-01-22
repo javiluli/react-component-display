@@ -1,0 +1,48 @@
+---
+title: Marquee
+description: Your first document
+---
+
+import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
+import { MarqueeDemo } from "@/demo/components/MarqueeDemo";
+import { componentSource } from "@/lib/docs/components/Marquee";
+
+# Box component
+
+<Tabs items={['Vista Previa', 'Código']}>
+  <Tab>
+    
+    <MarqueeDemo/>
+
+    ## Props
+
+    <AutoTypeTable path="src/components/content/components/Marquee/marquee.types.ts" name="MarqueeProps" />
+
+  </Tab>
+
+  <Tab>
+    ## Usage
+
+    ```jsx copy showLineNumbers
+    import { Box } from "@/Box";
+
+    <div style={{ minHeight: "300px" }}>
+      <Flex direction="column" justifyItems="around" className="h-full">
+        <Marquee activities={activities.slice(1, 4)} animationDuration={35} />
+        <Marquee activities={activities.slice(1, 4)} animationDuration={20} reverse={true} />
+      </Flex>
+    </div>;
+    ```
+
+    ## Code
+
+    ### Interface code
+
+    <CodeBlockDisplay file={componentSource.interface} />
+
+    ### Component Code
+
+    <CodeBlockDisplay file={componentSource.tsx} />
+
+  </Tab>
+</Tabs>

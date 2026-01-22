@@ -1,0 +1,57 @@
+---
+title: Flex
+description: Your first document
+---
+
+import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
+import { FlexDemo } from "@/demo/layouts/FlexDemo";
+import { componentSource } from "@/lib/docs/layouts/Flex";
+
+# Flex layout
+
+<Tabs items={['Vista Previa', 'Código']}>
+  <Tab>
+    
+    <FlexDemo/>
+
+    ## Props
+
+    <AutoTypeTable path="src/components/content/layouts/Flex/flex.types.ts" name="FlexProps" />
+
+  </Tab>
+
+  <Tab>
+    ## Usage
+
+    ```jsx copy showLineNumbers
+    import { Flex } from "@/Flex";
+
+    <Flex spacing={spacing} direction={direction as FlexDirection} justifyItems={justifyItems as FlexJustify} alignItems={alignItems as FlexAlign} className="h-full">
+      <Flex justifyItems="center" alignItems="center" className="px-5 py-5 bg-black border-2 border-white rounded-xl">
+        <span className="text-white text-2xl leading-none font-bold"> 1 </span>
+      </Flex>
+      <Flex justifyItems="center" alignItems="center" className="px-8 py-8 bg-black border-2 border-white rounded-xl">
+        <span className="text-white text-2xl leading-none font-bold"> 2 </span>
+      </Flex>
+      <Flex justifyItems="center" alignItems="center" className="px-11 py-11 bg-black border-2 border-white rounded-xl">
+        <span className="text-white text-2xl leading-none font-bold"> 3 </span>
+      </Flex>
+    </Flex>
+    ```
+
+    ## Code
+
+    ### Interface code
+
+    <CodeBlockDisplay file={componentSource.interface} />
+
+    ### Component Code
+
+    <CodeBlockDisplay file={componentSource.tsx} />
+
+    ### Constantes & helpers
+
+    <CodeBlockDisplay file={componentSource.const} />
+
+  </Tab>
+</Tabs>

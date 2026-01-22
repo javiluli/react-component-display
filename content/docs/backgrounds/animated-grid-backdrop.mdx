@@ -1,0 +1,46 @@
+---
+title: Animated Grid Backdrop
+description: Your first document
+---
+
+import { AnimatedGridBackdropDemo } from "@/demo/backgrounds/AnimatedGridBackdropDemo";
+import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
+import { componentSource } from "@/lib/docs/backgrounds/AnimatedGridBackdrop";
+
+# Animated Grid Pattern
+
+<Tabs items={['Vista Previa', 'Código']}>
+  <Tab>
+    
+    <AnimatedGridBackdropDemo/>
+
+    ## Props
+
+    <AutoTypeTable path="src/components/content/backgrounds/AnimatedGridBackdrop/AnimatedGridBackdrop.types.ts" name="AnimatedGridBackdropProps" />
+
+  </Tab>
+  
+  <Tab>
+    ## Usage
+
+    ```jsx copy showLineNumbers
+    import { AnimatedGridBackdrop } from "@/AnimatedGridBackdrop";
+
+    <div style={{ minHeight: "300px", position: "relative" }}>
+      <AnimatedGridBackdrop />
+    </div>;
+    ```
+
+    ## Code
+
+    ### Interface code
+
+    <CodeBlockDisplay file={componentSource.interface} />
+
+    ### Component Code
+
+    <CodeBlockDisplay file={componentSource.tsx} />
+
+  </Tab>
+
+</Tabs>

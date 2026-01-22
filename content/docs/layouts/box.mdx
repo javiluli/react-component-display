@@ -1,0 +1,45 @@
+---
+title: Box
+description: Your first document
+---
+
+import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
+import { BoxDemo } from "@/demo/layouts/BoxDemo";
+import { componentSource } from "@/lib/docs/layouts/Box";
+
+# Box component
+
+<Tabs items={['Vista Previa', 'Código']}>
+  <Tab>
+    
+    <BoxDemo/>
+
+    ## Props
+
+    <AutoTypeTable path="src/components/content/layouts/Box/box.types.ts" name="BoxProps" />
+
+  </Tab>
+
+  <Tab>
+    ## Usage
+
+    ```jsx copy showLineNumbers
+    import { Box } from "@/Box";
+
+    <div style={{ minHeight: "300px" }}>
+      <Box className=" w-44 h-44 bg-blue-600 mx-auto hover:bg-blue-300 transition-all" />
+    </div>;
+    ```
+
+    ## Code
+
+    ### Interface code
+
+    <CodeBlockDisplay file={componentSource.interface} />
+
+    ### Component Code
+
+    <CodeBlockDisplay file={componentSource.tsx} />
+
+  </Tab>
+</Tabs>
