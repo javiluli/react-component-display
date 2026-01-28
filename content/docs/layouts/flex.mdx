@@ -1,11 +1,10 @@
 ---
 title: Flex
-description: Your first document
+description: Flex layout component
 ---
 
-import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
-import { FlexDemo } from "@/demo/layouts/FlexDemo";
-import { componentSource } from "@/lib/docs/layouts/Flex";
+import { CodePreview } from '@/components/common/code-preview'
+import { FlexDemo } from '@/demo/layouts/FlexDemo'
 
 # Flex layout
 
@@ -15,7 +14,6 @@ import { componentSource } from "@/lib/docs/layouts/Flex";
     <FlexDemo/>
 
     ## Props
-
     <AutoTypeTable path="src/components/content/layouts/Flex/flex.types.ts" name="FlexProps" />
 
   </Tab>
@@ -40,18 +38,13 @@ import { componentSource } from "@/lib/docs/layouts/Flex";
     ```
 
     ## Code
+    <CodePreview componentPath="layouts/Flex/index.tsx" />
 
     ### Interface code
-
-    <CodeBlockDisplay file={componentSource.interface} />
-
-    ### Component Code
-
-    <CodeBlockDisplay file={componentSource.tsx} />
+    <CodePreview componentPath="layouts/Flex/flex.types.ts" />
 
     ### Constantes & helpers
-
-    <CodeBlockDisplay file={componentSource.const} />
+    <CodePreview componentPath="layouts/Flex/flex.constants.ts" />
 
   </Tab>
 </Tabs>

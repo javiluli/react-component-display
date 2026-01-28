@@ -1,11 +1,10 @@
 ---
 title: Box
-description: Your first document
+description: Box component
 ---
 
-import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
-import { BoxDemo } from "@/demo/layouts/BoxDemo";
-import { componentSource } from "@/lib/docs/layouts/Box";
+import { CodePreview } from '@/components/common/code-preview'
+import { BoxDemo } from '@/demo/layouts/BoxDemo'
 
 # Box component
 
@@ -15,7 +14,6 @@ import { componentSource } from "@/lib/docs/layouts/Box";
     <BoxDemo/>
 
     ## Props
-
     <AutoTypeTable path="src/components/content/layouts/Box/box.types.ts" name="BoxProps" />
 
   </Tab>
@@ -32,14 +30,10 @@ import { componentSource } from "@/lib/docs/layouts/Box";
     ```
 
     ## Code
+    <CodePreview componentPath="layouts/Box/index.tsx" />
 
     ### Interface code
-
-    <CodeBlockDisplay file={componentSource.interface} />
-
-    ### Component Code
-
-    <CodeBlockDisplay file={componentSource.tsx} />
+    <CodePreview componentPath="layouts/Box/box.types.ts" />
 
   </Tab>
 </Tabs>

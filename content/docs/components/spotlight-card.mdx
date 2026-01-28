@@ -1,11 +1,10 @@
 ---
 title: Spotlight Card
-description: Your first document
+description: Spotlight Card component
 ---
 
-import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
-import { SpotlightCardDemo } from "@/demo/components/SpotlightCardDemo";
-import { componentSource } from "@/lib/docs/components/SpotlightCard";
+import { CodePreview } from '@/components/common/code-preview'
+import { SpotlightCardDemo } from '@/demo/components/SpotlightCardDemo'
 
 # Box component
 
@@ -14,7 +13,6 @@ import { componentSource } from "@/lib/docs/components/SpotlightCard";
     <SpotlightCardDemo/>
 
     ## Props
-
     <AutoTypeTable path="src/components/content/components/SpotlightCard/spotlightCard.types.ts" name="SpotlightCardProps" />
 
   </Tab>
@@ -50,18 +48,13 @@ import { componentSource } from "@/lib/docs/components/SpotlightCard";
     ```
 
     ## Code
+    <CodePreview componentPath="components/SpotlightCard/index.tsx" />
 
     ### Interface code
-
-    <CodeBlockDisplay file={componentSource.interface} />
-
-    ### Component Code
-
-    <CodeBlockDisplay file={componentSource.tsx} />
+    <CodePreview componentPath="components/SpotlightCard/spotlightCard.types.ts" />
 
     ### CSS
-
-    <CodeBlockDisplay file={componentSource.css} />
+    <CodePreview componentPath="components/SpotlightCard/styles.css" />
 
   </Tab>
 </Tabs>

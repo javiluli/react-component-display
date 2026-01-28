@@ -1,11 +1,10 @@
 ---
 title: Marquee
-description: Your first document
+description: Marquee component
 ---
 
-import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
-import { MarqueeDemo } from "@/demo/components/MarqueeDemo";
-import { componentSource } from "@/lib/docs/components/Marquee";
+import { CodePreview } from '@/components/common/code-preview'
+import { MarqueeDemo } from '@/demo/components/MarqueeDemo'
 
 # Box component
 
@@ -15,7 +14,6 @@ import { componentSource } from "@/lib/docs/components/Marquee";
     <MarqueeDemo/>
 
     ## Props
-
     <AutoTypeTable path="src/components/content/components/Marquee/marquee.types.ts" name="MarqueeProps" />
 
   </Tab>
@@ -35,14 +33,13 @@ import { componentSource } from "@/lib/docs/components/Marquee";
     ```
 
     ## Code
+    <CodePreview componentPath="components/Marquee/index.tsx" />
 
     ### Interface code
+    <CodePreview componentPath="components/Marquee/marquee.types.ts" />
 
-    <CodeBlockDisplay file={componentSource.interface} />
-
-    ### Component Code
-
-    <CodeBlockDisplay file={componentSource.tsx} />
+    ### CSS
+    <CodePreview componentPath="components/Marquee/styles.css" />
 
   </Tab>
 </Tabs>

@@ -3,9 +3,8 @@ title: Animated Grid Backdrop
 description: Your first document
 ---
 
-import { AnimatedGridBackdropDemo } from "@/demo/backgrounds/AnimatedGridBackdropDemo";
-import { CodeBlockDisplay } from "@/components/common/preview/code-block-display";
-import { componentSource } from "@/lib/docs/backgrounds/AnimatedGridBackdrop";
+import { AnimatedGridBackdropDemo } from '@/demo/backgrounds/AnimatedGridBackdropDemo'
+import { CodePreview } from '@/components/common/code-preview'
 
 # Animated Grid Pattern
 
@@ -15,7 +14,6 @@ import { componentSource } from "@/lib/docs/backgrounds/AnimatedGridBackdrop";
     <AnimatedGridBackdropDemo/>
 
     ## Props
-
     <AutoTypeTable path="src/components/content/backgrounds/AnimatedGridBackdrop/AnimatedGridBackdrop.types.ts" name="AnimatedGridBackdropProps" />
 
   </Tab>
@@ -32,14 +30,10 @@ import { componentSource } from "@/lib/docs/backgrounds/AnimatedGridBackdrop";
     ```
 
     ## Code
+    <CodePreview componentPath="backgrounds/AnimatedGridBackdrop/index.tsx" />
 
     ### Interface code
-
-    <CodeBlockDisplay file={componentSource.interface} />
-
-    ### Component Code
-
-    <CodeBlockDisplay file={componentSource.tsx} />
+    <CodePreview componentPath="backgrounds/AnimatedGridBackdrop/AnimatedGridBackdrop.types.ts" />
 
   </Tab>
 
