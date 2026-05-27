@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { AnimatedGridBackdropProps } from './AnimatedGridBackdrop.types'
 
 interface Square {
@@ -8,6 +8,8 @@ interface Square {
   color: string
   cycle: number
 }
+
+const HARD_MAX_SQUARES = 120
 
 export function AnimatedGridBackdrop({
   squareWidth = 80,
@@ -25,63 +27,100 @@ export function AnimatedGridBackdrop({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [squares, setSquares] = useState<Square[]>([])
 
-  // -----------------------------
-  // Funciones de utilidad
-  // -----------------------------
+  const cellWidth = squareWidth + squareSpacing
+  const cellHeight = squareHeight + squareSpacing
+  const safeTotalSquares = Number.isFinite(totalSquares) ? Math.max(0, Math.floor(totalSquares)) : 0
+  const safeColors = squareColors.length > 0 ? squareColors : ['#4DA6FF']
 
-  // Elegir un color aleatorio del array
-  const getPos = (): [number, number] =>
-    dimensions.width && dimensions.height
-      ? [
-          Math.floor((Math.random() * (dimensions.width - squareWidth)) / (squareWidth + squareSpacing)),
-          Math.floor((Math.random() * (dimensions.height - squareHeight)) / (squareHeight + squareSpacing)),
-        ]
-      : [0, 0]
+  const validPositions = useMemo<[number, number][]>(() => {
+    const positions: [number, number][] = []
+    if (dimensions.width > 0 && dimensions.height > 0 && cellWidth > 0 && cellHeight > 0) {
+      // Include edge cells even when they are partially visible.
+      for (let x = 0; x < dimensions.width; x += cellWidth) {
+        for (let y = 0; y < dimensions.height; y += cellHeight) {
+          positions.push([x, y])
+        }
+      }
+    }
+    return positions
+  }, [dimensions.width, dimensions.height, cellWidth, cellHeight])
 
-  // Crear un cuadrado completo con id y ciclo inicial
-  const getColor = (): string => squareColors[Math.floor(Math.random() * squareColors.length)]
+  const maxCells = validPositions.length
 
-  // Generar array de cuadrados
-  const generateSquares = (count: number): Square[] =>
-    Array.from({ length: count }, (_, i) => ({
-      id: i,
-      pos: getPos(),
-      color: getColor(),
-      cycle: 0,
-    }))
+  const getColor = (): string => safeColors[Math.floor(Math.random() * safeColors.length)]
+  const encodePos = (x: number, y: number): string => `${x}:${y}`
 
-  // Actualizar un cuadrado al terminar su animación:
-  // - nueva posición
-  // - nuevo color
-  // - incrementar ciclo para reiniciar animación
+  const pickFreePos = (occupied: Set<string>): [number, number] | null => {
+    if (occupied.size >= maxCells) return null
+
+    for (let attempts = 0; attempts < 12; attempts += 1) {
+      const candidate = validPositions[Math.floor(Math.random() * validPositions.length)]
+      if (candidate && !occupied.has(encodePos(candidate[0], candidate[1]))) return candidate
+    }
+
+    const free = validPositions.filter(([x, y]) => !occupied.has(encodePos(x, y)))
+    if (free.length === 0) return null
+    return free[Math.floor(Math.random() * free.length)]
+  }
+
+  const generateSquares = (count: number): Square[] => {
+    const target = Math.min(count, maxCells, HARD_MAX_SQUARES)
+    const occupied = new Set<string>()
+    const created: Square[] = []
+
+    for (let i = 0; i < target; i += 1) {
+      const nextPos = pickFreePos(occupied)
+      if (!nextPos) break
+      occupied.add(encodePos(nextPos[0], nextPos[1]))
+      created.push({
+        id: i,
+        pos: nextPos,
+        color: getColor(),
+        cycle: 0,
+      })
+    }
+
+    return created
+  }
+
   const respawnSquare = (id: number) => {
-    setSquares((current) =>
-      current.map((sq) =>
+    setSquares((current) => {
+      const occupied = new Set<string>()
+      let currentSquare: Square | null = null
+
+      for (const sq of current) {
+        if (sq.id === id) {
+          currentSquare = sq
+          continue
+        }
+        occupied.add(encodePos(sq.pos[0], sq.pos[1]))
+      }
+
+      if (!currentSquare) return current
+
+      const nextPos = pickFreePos(occupied) ?? currentSquare.pos
+      return current.map((sq) =>
         sq.id === id
           ? {
               ...sq,
-              pos: getPos(),
+              pos: nextPos,
               color: getColor(),
               cycle: sq.cycle + 1,
             }
           : sq,
-      ),
-    )
+      )
+    })
   }
 
-  // -----------------------------
-  // Efectos
-  // -----------------------------
-
-  // Generar cuadrados cuando cambian dimensiones o totalSquares
   useEffect(() => {
-    if (dimensions.width && dimensions.height) {
-      setSquares(generateSquares(totalSquares))
+    if (dimensions.width && dimensions.height && maxCells > 0) {
+      setSquares(generateSquares(safeTotalSquares))
+    } else {
+      setSquares([])
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dimensions, totalSquares])
+  }, [dimensions, safeTotalSquares, squareWidth, squareHeight, squareSpacing, maxCells])
 
-  // Observador de tamaño del contenedor
   useEffect(() => {
     const resizeObserver = new ResizeObserver(([entry]) => {
       setDimensions({
@@ -93,10 +132,9 @@ export function AnimatedGridBackdrop({
     if (containerRef.current) resizeObserver.observe(containerRef.current)
 
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      if (containerRef.current) resizeObserver.unobserve(containerRef.current)
+      resizeObserver.disconnect()
     }
-  }, [containerRef])
+  }, [])
 
   return (
     <svg
@@ -123,15 +161,10 @@ export function AnimatedGridBackdrop({
               />
             </pattern>
           </defs>
-
           <rect width="100%" height="100%" fill={`url(#${id})`} />
         </>
       )}
 
-      {/* fondo con pattern */}
-      <rect width="100%" height="100%" fill={`url(#${id})`} />
-
-      {/* cuadrados animados */}
       {squares.map(({ pos, id, color, cycle }, index) => {
         const [xPos, yPos] = pos ?? [0, 0]
         return (
@@ -146,8 +179,8 @@ export function AnimatedGridBackdrop({
               ease: ['easeIn', 'linear', 'easeOut'],
             }}
             onAnimationComplete={() => respawnSquare(id)}
-            x={xPos * (squareWidth + squareSpacing)}
-            y={yPos * (squareHeight + squareSpacing)}
+            x={xPos}
+            y={yPos}
             width={squareWidth}
             height={squareHeight}
             fill={color}

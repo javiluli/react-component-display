@@ -1,3 +1,36 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
+@layer base {
+  /* Estilos base del input */
+  input[type='range'] {
+    @apply appearance-none bg-transparent cursor-pointer;
+  }
+
+  /* --- WebKit (Chrome, Safari, Edge) --- */
+  input[type='range']::-webkit-slider-runnable-track {
+    @apply h-2 rounded-full bg-[hsl(0,0%,16%)];
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    @apply appearance-none h-5 w-5 rounded-full bg-[hsl(0,0%,7%)] border-4 border-white -mt-1.5 transition-transform duration-150 ease-out;
+  }
+
+  input[type='range']:hover::-webkit-slider-thumb {
+    /* @apply scale-105; */
+  }
+
+  /* --- Firefox --- */
+  input[type='range']::-moz-range-track {
+    @apply h-4 rounded-full border-2 border-fd-muted;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    @apply h-3 w-3 rounded-full bg-fd-background border-4 border-fd-muted;
+  }
+
+  input[type='range']::-moz-range-progress {
+    @apply h-4 bg-fd-muted rounded-full;
+  }
+}

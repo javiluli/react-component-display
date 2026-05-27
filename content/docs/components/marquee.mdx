@@ -1,16 +1,12 @@
 ---
 title: Marquee
-description: Marquee component
 ---
 
 import { CodePreview } from '@/components/common/code-preview'
-import { MarqueeDemo } from '@/demo/components/MarqueeDemo'
-
-# Box component
+import { MarqueeDemo } from '@/components/content/components/Marquee/marquee.demo.tsx'
 
 <Tabs items={['Vista Previa', 'Código']}>
   <Tab>
-    
     <MarqueeDemo/>
 
     ## Props
@@ -22,14 +18,33 @@ import { MarqueeDemo } from '@/demo/components/MarqueeDemo'
     ## Usage
 
     ```jsx copy showLineNumbers
-    import { Box } from "@/Box";
+    import { Marquee } from "./Marquee";
 
-    <div style={{ minHeight: "300px" }}>
-      <Flex direction="column" justifyItems="around" className="h-full">
-        <Marquee activities={activities.slice(1, 4)} animationDuration={35} />
-        <Marquee activities={activities.slice(1, 4)} animationDuration={20} reverse={true} />
-      </Flex>
-    </div>;
+    <Marquee animationDuration={60}>
+      {activities.map((i) => (
+        <Flex
+          key={`${i.id}`}
+          spacing={12}
+          direction="column"
+          justifyItems="center"
+          alignItems="center"
+          className="px-4 py-2 ring-2 ring-white/20 rounded-xl shrink-0 transition-all hover:ring-white/80 hover:cursor-pointer"
+        >
+          <span className="text-2xl font-bold">{i.title}</span>
+          <div className="w-full h-px bg-white/20" />
+          <span className="text-base">{i.description}</span>
+        </Flex>
+      ))}
+    </Marquee>
+
+    const activities = [
+      {id: 1, title: 'Step', description: 'Coordinate and burn calories to the rhythm of the music.',},
+      {id: 2, title: 'Zumba', description: 'Dance and work out with contagious energy.',},
+      {id: 3, title: 'Weights and Cardio', description: 'Effectively combine weight training and cardio.',},
+      {id: 4, title: 'Yoga', description: 'Connect body and mind with balance.',},
+      {id: 5, title: 'Pilates', description: 'Strengthen your core and improve flexibility.',},
+      {id: 6, title: 'Boxing Zone', description: 'Train strength and endurance with proper technique.',},
+    ]
     ```
 
     ## Code
@@ -37,9 +52,6 @@ import { MarqueeDemo } from '@/demo/components/MarqueeDemo'
 
     ### Interface code
     <CodePreview componentPath="components/Marquee/marquee.types.ts" />
-
-    ### CSS
-    <CodePreview componentPath="components/Marquee/styles.css" />
 
   </Tab>
 </Tabs>

@@ -1,12 +1,9 @@
 ---
 title: Spotlight Card
-description: Spotlight Card component
 ---
 
 import { CodePreview } from '@/components/common/code-preview'
-import { SpotlightCardDemo } from '@/demo/components/SpotlightCardDemo'
-
-# Box component
+import { SpotlightCardDemo } from '@/components/content/components/SpotlightCard/spotlight-card.demo.tsx'
 
 <Tabs items={['Vista Previa', 'Código']}>
   <Tab>
@@ -21,30 +18,14 @@ import { SpotlightCardDemo } from '@/demo/components/SpotlightCardDemo'
     ## Usage
 
     ```jsx copy showLineNumbers
-    import { Box } from "@/Box";
+    import { SpotlightCard } from "./SpotlightCard";
 
-    <div style={{ minHeight: "300px" }}>
-      <Flex spacing={remToPx(1)} className="h-full">
-        <SpotlightCard>
-          <Box className="max-w-xs w-full py-2 px-4">
-            <H5>Lorem Ipsum Product</H5>
-            <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</P>
-          </Box>
-        </SpotlightCard>
-        <SpotlightCard colorGlow="glowPurple">
-          <Box className="max-w-xs w-full py-2 px-4">
-            <H5>Lorem Ipsum Product</H5>
-            <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</P>
-          </Box>
-        </SpotlightCard>
-        <SpotlightCard colorGlow="glowTeal">
-          <Box className="max-w-xs w-full py-2 px-4">
-            <H5>Lorem Ipsum Product</H5>
-            <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</P>
-          </Box>
-        </SpotlightCard>
-      </Flex>
-    </div>;
+    <SpotlightCard>
+      <Box className="max-w-xs w-full py-2 px-4">
+        <H5>Lorem Ipsum Product</H5>
+        <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</P>
+      </Box>
+    </SpotlightCard>
     ```
 
     ## Code

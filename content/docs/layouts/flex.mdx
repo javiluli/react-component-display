@@ -1,12 +1,9 @@
 ---
 title: Flex
-description: Flex layout component
 ---
 
 import { CodePreview } from '@/components/common/code-preview'
-import { FlexDemo } from '@/demo/layouts/FlexDemo'
-
-# Flex layout
+import { FlexDemo } from '@/components/content/layouts/Flex/flex.demo.tsx'
 
 <Tabs items={['Vista Previa', 'Código']}>
   <Tab>
@@ -22,18 +19,18 @@ import { FlexDemo } from '@/demo/layouts/FlexDemo'
     ## Usage
 
     ```jsx copy showLineNumbers
-    import { Flex } from "@/Flex";
+    import { Flex } from "./Flex";
 
-    <Flex spacing={spacing} direction={direction as FlexDirection} justifyItems={justifyItems as FlexJustify} alignItems={alignItems as FlexAlign} className="h-full">
-      <Flex justifyItems="center" alignItems="center" className="px-5 py-5 bg-black border-2 border-white rounded-xl">
-        <span className="text-white text-2xl leading-none font-bold"> 1 </span>
-      </Flex>
-      <Flex justifyItems="center" alignItems="center" className="px-8 py-8 bg-black border-2 border-white rounded-xl">
-        <span className="text-white text-2xl leading-none font-bold"> 2 </span>
-      </Flex>
-      <Flex justifyItems="center" alignItems="center" className="px-11 py-11 bg-black border-2 border-white rounded-xl">
-        <span className="text-white text-2xl leading-none font-bold"> 3 </span>
-      </Flex>
+    <Flex>
+      <div className="flex justify-center items-center w-14 h-14 border-2 border-white rounded-lg">
+        <span className="text-xl leading-none font-semibold">1</span>
+      </div>
+      <div className="flex justify-center items-center w-20 h-20 border-2 border-white rounded-lg">
+        <span className="text-xl leading-none font-semibold">2</span>
+      </div>
+      <div className="flex justify-center items-center w-26 h-26 border-2 border-white rounded-lg">
+        <span className="text-xl leading-none font-semibold">3</span>
+      </div>
     </Flex>
     ```
 

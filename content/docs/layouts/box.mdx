@@ -1,12 +1,9 @@
 ---
 title: Box
-description: Box component
 ---
 
 import { CodePreview } from '@/components/common/code-preview'
-import { BoxDemo } from '@/demo/layouts/BoxDemo'
-
-# Box component
+import { BoxDemo } from '@/components/content/layouts/Box/box.demo.tsx'
 
 <Tabs items={['Vista Previa', 'Código']}>
   <Tab>
@@ -22,11 +19,9 @@ import { BoxDemo } from '@/demo/layouts/BoxDemo'
     ## Usage
 
     ```jsx copy showLineNumbers
-    import { Box } from "@/Box";
+    import { Box } from "./Box";
 
-    <div style={{ minHeight: "300px" }}>
-      <Box className=" w-44 h-44 bg-blue-600 mx-auto hover:bg-blue-300 transition-all" />
-    </div>;
+    <Box className=" w-44 h-44 bg-blue-600 mx-auto hover:bg-blue-300 transition-all" />
     ```
 
     ## Code

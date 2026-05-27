@@ -1,5 +1,4 @@
 import { InputHTMLAttributes } from 'react'
-import './styles.css'
 
 interface PreviewSliderProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
@@ -10,10 +9,12 @@ interface PreviewSliderProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export function PreviewSlider({ label, value, min, max, ...porps }: PreviewSliderProps) {
   return (
-    <div className="flex gap-4 text-white/90">
-      <span className="text-sm">{label}</span>
-      <input type="range" min={min} max={max} value={value} className="slider" {...porps} />
-      <code className="text-sm">{value}</code>
+    <div className="flex flex-col gap-3">
+      <div className="flex justify-between items-center">
+        <span className="text-md font-semibold">{label}</span>
+        <span className="px-2 py-1.5 text-sm font-semibold bg-fd-muted rounded-md">{value}</span>
+      </div>
+      <input type="range" min={min} max={max} value={value} {...porps} />
     </div>
   )
 }

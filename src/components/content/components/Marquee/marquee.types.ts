@@ -1,14 +1,13 @@
-export type Actividad = {
-  title: string
-  description: string
-}
+import { ReactNode } from 'react'
+
+export type Direction = 'normal' | 'reverse'
 
 export interface MarqueeProps {
   /**
    * Elementos que aparecen en el compnente.
    * @default []
    */
-  activities: Actividad[]
+  children: ReactNode
 
   /**
    * Duración de la animación (en segundos).
@@ -17,8 +16,8 @@ export interface MarqueeProps {
   animationDuration?: number
 
   /**
-   * Ancho de cada cuadrado en píxeles.
-   * @default false
+   * Direccion de la animacion (LTR o RTL)
+   * @default "normal"
    */
-  reverse?: boolean
+  direction?: Direction
 }
