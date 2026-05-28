@@ -2,21 +2,20 @@
 title: Flex
 ---
 
+import { Heading } from 'fumadocs-ui/components/heading'
 import { CodePreview } from '@/components/common/code-preview'
+import { Tabs } from '@/components/common/tabs'
 import { FlexDemo } from '@/components/content/layouts/Flex/flex.demo.tsx'
 
-<Tabs items={['Vista Previa', 'Código']}>
+<Tabs>
   <Tab>
-    
     <FlexDemo/>
-
-    ## Props
+    <Heading as="h2">Props</Heading>
     <AutoTypeTable path="src/components/content/layouts/Flex/flex.types.ts" name="FlexProps" />
-
   </Tab>
 
   <Tab>
-    ## Usage
+    <Heading as="h2">Usage</Heading>
 
     ```jsx copy showLineNumbers
     import { Flex } from "./Flex";
@@ -34,14 +33,14 @@ import { FlexDemo } from '@/components/content/layouts/Flex/flex.demo.tsx'
     </Flex>
     ```
 
-    ## Code
-    <CodePreview componentPath="layouts/Flex/index.tsx" />
+    <Heading as="h2">Code</Heading>
+    <CodePreview component='Flex' />
 
-    ### Interface code
-    <CodePreview componentPath="layouts/Flex/flex.types.ts" />
+    <Heading as="h2"> Interface code </Heading>
+    <CodePreview component='Flex' file='t' />
 
-    ### Constantes & helpers
-    <CodePreview componentPath="layouts/Flex/flex.constants.ts" />
+    <Heading as="h2"> Constantes & helpers </Heading>
+    <CodePreview component='Flex' file='c' />
 
   </Tab>
 </Tabs>

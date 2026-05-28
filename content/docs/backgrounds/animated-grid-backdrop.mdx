@@ -2,21 +2,20 @@
 title: Animated Grid Backdrop
 ---
 
+import { Heading } from 'fumadocs-ui/components/heading'
 import { CodePreview } from '@/components/common/code-preview'
+import { Tabs } from '@/components/common/tabs'
 import { AnimatedGridBackdropDemo } from '@/components/content/backgrounds/AnimatedGridBackdrop/animated-grid-backdrop.demo.tsx'
 
-<Tabs items={['Vista Previa', 'Código']}>
+<Tabs>
   <Tab>
-    
     <AnimatedGridBackdropDemo/>
-
-    ## Props
+    <Heading as="h2">Props</Heading>
     <AutoTypeTable path="src/components/content/backgrounds/AnimatedGridBackdrop/AnimatedGridBackdrop.types.ts" name="AnimatedGridBackdropProps" />
-
   </Tab>
   
   <Tab>
-    ## Usage
+    <Heading as="h2">Usage</Heading>
 
     ```jsx copy showLineNumbers
     import { AnimatedGridBackdrop } from "./AnimatedGridBackdrop";
@@ -24,12 +23,11 @@ import { AnimatedGridBackdropDemo } from '@/components/content/backgrounds/Anima
     <AnimatedGridBackdrop />
     ```
 
-    ## Code
-    <CodePreview componentPath="backgrounds/AnimatedGridBackdrop/index.tsx" />
+    <Heading as="h2">Code</Heading>
+    <CodePreview component='AnimatedGridBackdrop' />
 
-    ### Interface code
-    <CodePreview componentPath="backgrounds/AnimatedGridBackdrop/AnimatedGridBackdrop.types.ts" />
+    <Heading as="h2"> Interface code </Heading>
+    <CodePreview component='AnimatedGridBackdrop' file='t' />
 
   </Tab>
-
 </Tabs>

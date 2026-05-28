@@ -24,7 +24,9 @@
     "fumadocs-mdx": "14.2.6",
     "fumadocs-typescript": "^5.0.1",
     "fumadocs-ui": "16.4.7",
+    "imagesloaded": "^5.0.0",
     "lucide-react": "^0.562.0",
+    "masonry-layout": "^4.2.2",
     "next": "16.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
@@ -33,6 +35,8 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^20.3.1",
     "@tailwindcss/postcss": "^4.1.18",
+    "@types/imagesloaded": "^4.1.7",
+    "@types/masonry-layout": "^4.2.8",
     "@types/mdx": "^2.0.13",
     "@types/node": "^25.0.5",
     "@types/react": "^19.2.8",

@@ -6,6 +6,7 @@
     "---Layouts---",
     "layouts/box",
     "layouts/flex",
+    "layouts/masonry",
 
     "---Components---",
     "components/marquee",

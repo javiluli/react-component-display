@@ -2,20 +2,20 @@
 title: Spotlight Card
 ---
 
+import { Heading } from 'fumadocs-ui/components/heading'
 import { CodePreview } from '@/components/common/code-preview'
+import { Tabs } from '@/components/common/tabs'
 import { SpotlightCardDemo } from '@/components/content/components/SpotlightCard/spotlight-card.demo.tsx'
 
-<Tabs items={['Vista Previa', 'Código']}>
+<Tabs>
   <Tab>
     <SpotlightCardDemo/>
-
-    ## Props
+    <Heading as="h2">Props</Heading>
     <AutoTypeTable path="src/components/content/components/SpotlightCard/spotlightCard.types.ts" name="SpotlightCardProps" />
-
   </Tab>
 
   <Tab>
-    ## Usage
+    <Heading as="h2">Usage</Heading>
 
     ```jsx copy showLineNumbers
     import { SpotlightCard } from "./SpotlightCard";
@@ -28,14 +28,11 @@ import { SpotlightCardDemo } from '@/components/content/components/SpotlightCard
     </SpotlightCard>
     ```
 
-    ## Code
-    <CodePreview componentPath="components/SpotlightCard/index.tsx" />
+    <h2> Code </h2>
+    <CodePreview component='SpotlightCard' />
 
-    ### Interface code
-    <CodePreview componentPath="components/SpotlightCard/spotlightCard.types.ts" />
-
-    ### CSS
-    <CodePreview componentPath="components/SpotlightCard/styles.css" />
+    <h2> Interface code </h2>
+    <CodePreview component='SpotlightCard' file='t' />
 
   </Tab>
 </Tabs>

@@ -2,21 +2,20 @@
 title: Box
 ---
 
+import { Heading } from 'fumadocs-ui/components/heading'
 import { CodePreview } from '@/components/common/code-preview'
+import { Tabs } from '@/components/common/tabs'
 import { BoxDemo } from '@/components/content/layouts/Box/box.demo.tsx'
 
-<Tabs items={['Vista Previa', 'Código']}>
+<Tabs>
   <Tab>
-    
     <BoxDemo/>
-
-    ## Props
+    <Heading as="h2">Props</Heading>
     <AutoTypeTable path="src/components/content/layouts/Box/box.types.ts" name="BoxProps" />
-
   </Tab>
 
   <Tab>
-    ## Usage
+    <Heading as="h2">Usage</Heading>
 
     ```jsx copy showLineNumbers
     import { Box } from "./Box";
@@ -24,11 +23,11 @@ import { BoxDemo } from '@/components/content/layouts/Box/box.demo.tsx'
     <Box className=" w-44 h-44 bg-blue-600 mx-auto hover:bg-blue-300 transition-all" />
     ```
 
-    ## Code
-    <CodePreview componentPath="layouts/Box/index.tsx" />
+    <Heading as="h2">Code</Heading>
+    <CodePreview component='Box' />
 
-    ### Interface code
-    <CodePreview componentPath="layouts/Box/box.types.ts" />
+    <Heading as="h2"> Interface code </Heading>
+    <CodePreview component='Box' file='t' />
 
   </Tab>
 </Tabs>

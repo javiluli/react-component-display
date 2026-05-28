@@ -2,20 +2,20 @@
 title: Marquee
 ---
 
+import { Heading } from 'fumadocs-ui/components/heading'
 import { CodePreview } from '@/components/common/code-preview'
+import { Tabs } from '@/components/common/tabs'
 import { MarqueeDemo } from '@/components/content/components/Marquee/marquee.demo.tsx'
 
-<Tabs items={['Vista Previa', 'Código']}>
+<Tabs>
   <Tab>
     <MarqueeDemo/>
-
-    ## Props
+    <Heading as="h2">Props</Heading>
     <AutoTypeTable path="src/components/content/components/Marquee/marquee.types.ts" name="MarqueeProps" />
-
   </Tab>
 
   <Tab>
-    ## Usage
+    <Heading as="h2">Usage</Heading>
 
     ```jsx copy showLineNumbers
     import { Marquee } from "./Marquee";
@@ -47,11 +47,11 @@ import { MarqueeDemo } from '@/components/content/components/Marquee/marquee.dem
     ]
     ```
 
-    ## Code
-    <CodePreview componentPath="components/Marquee/index.tsx" />
+    <Heading as="h2">Code</Heading>
+    <CodePreview component='Marquee' />
 
-    ### Interface code
-    <CodePreview componentPath="components/Marquee/marquee.types.ts" />
+    <Heading as="h2"> Interface code </Heading>
+    <CodePreview component='Marquee' file='t' />
 
   </Tab>
 </Tabs>
