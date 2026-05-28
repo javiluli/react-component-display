@@ -1,6 +1,6 @@
 import { cn } from '@/lib/cn'
 import { useEffect, useRef } from 'react'
-import { SpotlightCardProps } from './types.types'
+import { SpotlightCardProps } from './spotlightcard.types'
 
 export function SpotlightCard({ from = '#1cd1c6', via = '#407cff', to = 'transparent', children }: SpotlightCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
