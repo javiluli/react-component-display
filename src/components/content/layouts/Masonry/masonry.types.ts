@@ -1,21 +1,45 @@
 import { ReactNode } from 'react'
 
-export interface MasonryProps {
+export interface MasonryProps<T> {
   /**
-   * Elementos que aparecen en el compnente.
-   * @default []
+   * Items rendered inside the masonry layout.
    */
-  children: ReactNode
+  items: T[]
 
   /**
-   * Duración de la animación (en segundos).
-   * @default []
+   * Render function for each item.
    */
-  dependencies: unknown[]
+  renderItem: (item: T, index: number) => ReactNode
 
   /**
-   * Direccion de la animacion (LTR o RTL)
+   * Classes applied to each masonry column item.
+   *
    * @default "w-full sm:w-1/2 md:w-1/3"
    */
   columnClasses?: string
+
+  /**
+   * Space between masonry items.
+   *
+   * Accepts any valid CSS spacing value.
+   *
+   * @default "1rem"
+   */
+  gap?: string
+
+  /**
+   * Duration of the masonry transition animation.
+   *
+   * Accepts any valid CSS duration value.
+   *
+   * @default "0.25s"
+   */
+  transitionDuration?: string
+
+  /**
+   * Custom key extractor for each item.
+   *
+   * Useful for dynamic lists.
+   */
+  getKey?: (item: T, index: number) => string | number
 }

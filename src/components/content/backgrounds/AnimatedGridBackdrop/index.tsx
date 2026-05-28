@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
-import { AnimatedGridBackdropProps } from './animatedGridBackdrop.types'
+import { AnimatedGridBackdropProps } from './AnimatedGridBackdrop.types'
 
 interface Square {
   id: number

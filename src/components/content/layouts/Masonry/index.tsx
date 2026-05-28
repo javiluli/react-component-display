@@ -1,72 +1,132 @@
-import React, { ReactNode, useEffect, useRef } from 'react'
+'use client'
 
-interface Props {
-  children: ReactNode
-  dependencies: unknown[]
-  columnClasses?: string
+import { useEffect, useRef } from 'react'
+import { MasonryProps } from './masonry.types'
+
+interface MasonryInstance {
+  layout: () => void
+  destroy: () => void
+  reloadItems: () => void
+  on: (event: string, callback: () => void) => void
 }
 
-export const Masonry: React.FC<Props> = ({
-  children,
-  dependencies,
-  columnClasses = 'w-full sm:w-1/2 md:w-1/3 px-2',
-}) => {
-  const containerRef = useMasonry<HTMLDivElement>(dependencies)
+export function Masonry<T>({
+  items,
+  renderItem,
+  columnClasses = 'w-full sm:w-1/2 md:w-1/3 lg:w-1/4',
+  gap = '1rem',
+  transitionDuration = '0.25s',
+  getKey,
+}: MasonryProps<T>) {
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  return (
-    <div ref={containerRef} className="-mx-2">
-      <div className={`grid-sizer ${columnClasses}`} />
-      {children}
-    </div>
-  )
-}
-interface UseMasonryOptions {
-  itemSelector?: string
-  columnWidth?: string
-  percentPosition?: boolean
-  transitionDuration?: string
-}
-
-export function useMasonry<T extends HTMLElement>(dependencies: unknown[], options: UseMasonryOptions = {}) {
-  const containerRef = useRef<T>(null)
-  const masonryRef = useRef<any>(null)
+  const masonryRef = useRef<MasonryInstance | null>(null)
 
   useEffect(() => {
     if (!containerRef.current) return
 
-    const container = containerRef.current
+    let mounted = true
 
-    let imgLoad: any
+    async function init() {
+      const MasonryModule = await import('masonry-layout')
+      const ImagesLoadedModule = await import('imagesloaded')
 
-    async function initMasonry() {
-      const MasonryLayout = (await import('masonry-layout')).default
-      const imagesLoaded = (await import('imagesloaded')).default
+      if (!mounted || !containerRef.current) return
 
-      masonryRef.current = new MasonryLayout(container, {
-        itemSelector: options.itemSelector || '.grid-item',
-        columnWidth: options.columnWidth || '.grid-sizer',
-        percentPosition: options.percentPosition ?? true,
-        transitionDuration: options.transitionDuration || '0.3s',
-      })
+      const MasonryLayout = MasonryModule.default
 
-      imgLoad = imagesLoaded(container)
+      const imagesLoaded = ImagesLoadedModule.default
 
-      const handleProgress = () => {
-        masonryRef.current?.layout?.()
+      if (!masonryRef.current) {
+        masonryRef.current = new MasonryLayout(containerRef.current, {
+          itemSelector: '.grid-item',
+          columnWidth: '.grid-sizer',
+          percentPosition: true,
+          transitionDuration,
+        }) as MasonryInstance
+
+        masonryRef.current.on('layoutComplete', () => {
+          if (!containerRef.current) return
+
+          const elements = Array.from(containerRef.current.querySelectorAll('.masonry-item-content'))
+
+          elements.forEach((element, index) => {
+            requestAnimationFrame(() => {
+              setTimeout(() => {
+                element.classList.remove('opacity-0', 'translate-y-6')
+
+                element.classList.add('opacity-100', 'translate-y-0')
+              }, index * 60)
+            })
+          })
+        })
+      } else {
+        masonryRef.current.reloadItems()
+
+        masonryRef.current.layout()
       }
 
-      imgLoad.on('progress', handleProgress)
+      imagesLoaded(containerRef.current).on('progress', () => {
+        masonryRef.current?.layout()
+      })
     }
 
-    initMasonry()
+    void init()
 
     return () => {
-      imgLoad?.off?.('progress')
-      masonryRef.current?.destroy?.()
+      mounted = false
     }
+  }, [items, transitionDuration])
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dependencies)
+  useEffect(() => {
+    return () => {
+      masonryRef.current?.destroy()
 
-  return containerRef
+      masonryRef.current = null
+    }
+  }, [])
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        margin: `calc(${gap} / -2)`,
+      }}
+    >
+      <div
+        className={`grid-sizer ${columnClasses}`}
+        style={{
+          padding: `calc(${gap} / 2)`,
+        }}
+      />
+
+      {items.map((item, index) => (
+        <div
+          key={getKey?.(item, index) ?? index}
+          className={`grid-item ${columnClasses}`}
+          style={{
+            padding: `calc(${gap} / 2)`,
+            boxSizing: 'border-box',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
+          }}
+        >
+          <div
+            className="
+              masonry-item-content
+              opacity-0
+              translate-y-6
+              transition-all
+              duration-500
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              will-change-transform
+              will-change-opacity
+            "
+          >
+            {renderItem(item, index)}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
 }

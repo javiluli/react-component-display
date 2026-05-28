@@ -1,8 +1,8 @@
 'use client'
 
 import { ComponentPreviewContainer } from '@/components/common/component-preview-container'
-import { Masonry } from '@/components/content/layouts/Masonry'
 import { Flex } from '@/components/content/layouts/Flex'
+import { Masonry } from '@/components/content/layouts/Masonry'
 import { Heading } from 'fumadocs-ui/components/heading'
 
 // const defaultValue: MarqueeProps = {
@@ -35,20 +35,22 @@ export function MasonryDemo() {
 
   // const { animationDuration, direction } = props
 
-  const columnClasses = 'w-full sm:w-1/2 md:w-1/3 px-2'
-
   return (
     <Flex direction="column">
-      <ComponentPreviewContainer className="overflow-y-scroll">
-        <Masonry dependencies={INITIAL_IMAGES} columnClasses={columnClasses}>
-          {INITIAL_IMAGES.map((url, index) => (
-            <div key={`${url}`} className={`grid-item mb-4 ${columnClasses}`}>
-              <div className="overflow-hidden rounded-lg shadow-md hover:opacity-90 transition-opacity">
-                <img src={url} alt={`Gallery item ${index}`} className="mt-0 mb-0 w-full h-auto block" />
-              </div>
+      <ComponentPreviewContainer className="overflow-y-auto max-h-200">
+        <Masonry
+          items={INITIAL_IMAGES}
+          getKey={(item) => item}
+          renderItem={(url, index) => (
+            <div className="group overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-300">
+              <img
+                src={url}
+                alt={`Gallery item ${index}`}
+                className="w-full h-auto mt-0 mb-0 block transform group-hover:scale-105 transition-transform duration-500"
+              />
             </div>
-          ))}
-        </Masonry>
+          )}
+        />
       </ComponentPreviewContainer>
 
       <Heading as="h2">Customize</Heading>
