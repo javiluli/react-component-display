@@ -1,45 +1,33 @@
-# react-component-display
+# React Component Display
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Fumadocs](https://img.shields.io/badge/Fumadocs-16-111111)
 
-Run development server:
+Colección de componentes y layouts reutilizables desarrollados con Next.js y React.
 
-```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
-```
+Este proyecto tiene dos objetivos:
 
-Open http://localhost:3000 with your browser to see the result.
+- Probar el framework `Fumadocs` para la creación de documentación.
+- Mantener un catálogo personal de componentes que utilizo habitualmente o que considero interesantes por su implementación.
 
-## Explore
+La documentación sirve como referencia rápida para consultar ejemplos, comportamientos y detalles de cada componente.
 
-In the project, you can see:
+## Componentes disponibles
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+### Layouts
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
+- Box
+- Flex
+- Masonry
 
-### Fumadocs MDX
+### Componentes
 
-A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
+- Marquee
+- Spotlight Card
 
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
+### Backgrounds
 
-## Learn More
-
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+- Animated Grid Backdrop
